@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Magellanarts/todayi-server#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "axios": "^0.19.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
