@@ -20,7 +20,7 @@ const registerValidation = data => {
   });
 
   // Validate data before creating a user
-  return schema.validate(data);
+  return schema.validate(data, { errors: { label: 'key' } });
 };
 
 // Login Validation

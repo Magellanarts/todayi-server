@@ -10,7 +10,15 @@ router.post('/register', async (req, res) => {
 
   // Validate before creating a user
   const { error } = registerValidation(data);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) {
+    let message = error.details[0].context.label
+      .split(/(?=[A-Z])/)
+      .join(' ')
+      .capitalize();
+
+    message = `${message} ${error.details[0].message.replace(/".*?"/, '')}`;
+    return res.status(400).send(message);
+  }
 
   // Check if user is already in database
   const emailExist = await User.findOne({ email: data.email });
@@ -63,5 +71,9 @@ router.post('/login', async (req, res) => {
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
   res.header('auth-token', token).send(token);
 });
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
 module.exports = router;
