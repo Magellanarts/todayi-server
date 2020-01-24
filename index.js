@@ -21,6 +21,9 @@ mongoose.connect(
 // Allow cross-origin requests
 app.use(cors());
 
+const port = process.env.PORT || 3000;
+const environment = process.env.NODE_ENV || 'development';
+
 // Middleware
 app.use(express.json());
 
