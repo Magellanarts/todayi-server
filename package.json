@@ -16,6 +16,10 @@
   "bugs": {
     "url": "https://github.com/Magellanarts/todayi-server/issues"
   },
+  "engines": {
+    "node": "12.9.0",
+    "yarn": "1.17.3"
+  },
   "homepage": "https://github.com/Magellanarts/todayi-server#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.0",
