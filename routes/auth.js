@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
       .join(' ')
       .capitalize();
 
-    message = `${message} ${error.details[0].message.replace(/".*?"/, '')}`;
+    message = `${message}${error.details[0].message.replace(/".*?"/, '')}`;
     return res.status(400).send(message);
   }
 
@@ -54,7 +54,15 @@ router.post('/login', async (req, res) => {
 
   // Validate fields
   const { error } = loginValidation(data);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) {
+    let message = error.details[0].context.label
+      .split(/(?=[A-Z])/)
+      .join(' ')
+      .capitalize();
+
+    message = `${message}${error.details[0].message.replace(/".*?"/, '')}`;
+    return res.status(400).send(message);
+  }
 
   // Check if user is already in database
   const user = await User.findOne({ email: data.email });
@@ -69,7 +77,7 @@ router.post('/login', async (req, res) => {
 
   // Create and assign a token
   const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
-  res.header('auth-token', token).send(token);
+  res.header('auth-token', token).send({ token });
 });
 
 String.prototype.capitalize = function() {
