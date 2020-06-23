@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "autostart": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,13 @@
     "@hapi/joi": "^17.1.0",
     "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.22.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.9"
+    "mongoose": "^5.8.9",
+    "multer": "^1.4.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
